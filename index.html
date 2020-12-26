@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            margin-top: 100px;
+            padding: 20px;
+            text-align: center;
+        }
+        #all {
+            width: 600px;
+            height: 700px;
+            border: 5px solid black;
+            padding: 20px;
+            text-align: center;
+            margin: 30px;
+            background-color: rgb(238, 228, 228);
+            border-radius: 85px !important;
+        }
+        .second {
+            margin: 30px;
+        }
+        #button {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="all">
+        <div class="second">
+            <img src="./image/portflio.png" height="200" width="200">
+        </div>
+        <div class="second">
+            <input type="text" placeholder="First name" class="name" onblur="allLetter()">
+            <input type="text" placeholder="Last name" class="name" onblur="allLetter()">
+        </div>
+        <div id="erorr">
+        </div>
+        <div class="second">
+            <input type="text" placeholder="Email" id="email" width="600" onblur="Email()">
+        </div>
+        <div id="erorr2">
+        </div>
+        <div class="second">
+            <input type="password" placeholder="Password" id="pass" onblur="CheckPassword()">
+        </div>
+        <div id="erorr3">
+        </div>
+        <div class="second">
+            <input type="password" placeholder="Confirm password" id="pass1" onblur="CheckPassword2()">
+        </div>
+        <div id="erorr4">
+        </div>
+        <div class="second">
+            <input type="text" placeholder="Phone number" id="phone" onblur="PhoneNumber()">
+        </div>
+        <div id="erorr5">
+        </div>
+      
+    </div>
+    <script>
+        function allLetter() {
+            var letters = /[A-Za-z]+$/;
+            if ($(".name").val().match(letters) && $(".name").val().length > 5) {
+                //alert('Your name have accepted : you can try another');
+                $("#erorr").hide()
+                return true;
+            }
+            else {
+                $("#erorr").html("Please write letter only").css("color", "red");
+                return false;
+            }
+        }
+        function Email() {
+            //var email=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+            var email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if ($("#email").val().match(email)) {
+                //alert('Your name have accepted : you can try another');
+                $("#erorr2").hide()
+                return true;
+            }
+            else {
+                $("#erorr2").html("Please enter a valid email").css("color", "red");
+                return false;
+            }
+        }
+        function CheckPassword() {
+            var paswd = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/;
+            var pass1 = $("#pass").val();
+            if (pass1.match(paswd)) {
+                //  alert('Correct, try another...')
+                $("#erorr3").hide()
+                return true;
+            }
+            else {
+                ///alert('Wrong...!')
+                $("#erorr3").html('Password must have at 1letter, 1symbol,1number').css("color", "red");
+                return false;
+            }
+        }
+        function CheckPassword2() {
+            var pass11 = $("#pass").val();
+            var pass2 = $("#pass1").val();
+            if (pass11 === pass2) {
+                $("#erorr4").hide()
+                return true;
+            }
+            else {
+                ///alert('Wrong...!')
+                $("#erorr4").html('doesn\'t match').css("color", "red");
+                return false;
+            }
+        }
+        function PhoneNumber() {
+           var number="/^([009627]{6})([7-9]{1})([0-9]{7})/";
+            if ($("#phone").val().match(number)) {
+                $("#erorr5").hide()
+                return true;
+            }
+            else {
+                ///alert('Wrong...!')
+                $("#erorr5").html('Enter valid number').css("color", "red");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
